@@ -12,4 +12,9 @@ class Event extends Model
     {
         return $this->hasMany(Gift::class);
     }
+
+    public function table()
+    {
+        return $this->hasOne(Table::class);
+    }
 }

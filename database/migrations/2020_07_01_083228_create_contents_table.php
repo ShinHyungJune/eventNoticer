@@ -21,7 +21,7 @@ class CreateContentsTable extends Migration
             $table->foreign("column_id")->references("id")->on("columns")->onDelete("cascade");
             $table->unsignedBigInteger("row_id");
             $table->foreign("row_id")->references("id")->on("rows")->onDelete("cascade");
-            $table->text("content")->nullable();
+            $table->text("body")->nullable();
             $table->timestamps();
         });
     }

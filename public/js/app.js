@@ -72403,7 +72403,17 @@ __webpack_require__.r(__webpack_exports__);
 var Index = function Index() {
   var html = document.querySelector("html");
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll); // https://www.facebook.com/**5550296508**/photos/10154246192721509 // 별표친 부분이 아이디야
+    // https://www.facebook.com~~~~/&id=1230401230 // id 파라미터가 아이디야
+    // https://www.facebook.com/genyoung.jeong/posts/3260142810739530 // 닉네임 이건 axios.get으로 해당 주소 그대로 요청하면 config.url에서 아이디 얻을 수 있어
+
+    console.log(getPaths("https://www.facebook.com/**5550296508**/photos/10154246192721509"));
+    axios.get("http://graph.facebook.com/100016947091727/picture?type=square").then(function (response) {
+      console.log(response);
+    });
+    axios.get("https://www.facebook.com/genyoung.jeong/posts/3260142810739530").then(function (response) {
+      console.log(response);
+    });
   }, []);
 
   var onScroll = function onScroll(e) {
@@ -72540,7 +72550,10 @@ var logout = function logout() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
+/* harmony import */ var _utilities_interceptors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utilities/interceptors */ "./resources/js/utilities/interceptors.js");
 
+
+Object(_utilities_interceptors__WEBPACK_IMPORTED_MODULE_1__["default"])();
 window.store = _store__WEBPACK_IMPORTED_MODULE_0__["default"];
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -72557,6 +72570,24 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 __webpack_require__(/*! ./Index */ "./resources/js/Index.jsx");
+
+var url;
+
+window.getParams = function (url) {
+  url = new URL(url);
+  var params = new URLSearchParams(url.search);
+  return params;
+};
+
+window.getUrls = function (str) {
+  return str.match(/\bhttps?:\/\/\S+/gi);
+};
+
+window.getPaths = function (url) {
+  url = new URL(url);
+  var path = url.pathname;
+  return url.pathname.split("/");
+};
 
 /***/ }),
 
@@ -74636,17 +74667,36 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Show = function Show(_ref) {
   var match = _ref.match;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      item = _useState2[0],
-      setItem = _useState2[1];
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      item = _useState4[0],
+      setItem = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios.get("/api/events/" + match.params.id).then(function (response) {
       setItem(response.data.data);
-      console.log(response.data.data);
     });
   }, []);
+
+  var importJoiner = function importJoiner(e) {
+    if (e.target.files[0]) {
+      var formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      formData.append("id", match.params.id);
+      setLoading(true);
+      axios.post("/api/events/import", formData).then(function (response) {
+        setLoading(false);
+        console.log(response.data.data);
+        setItem(response.data.data);
+      });
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: 'page show'
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74655,8 +74705,16 @@ var Show = function Show(_ref) {
     className: "page-title"
   }, "\uC774\uBCA4\uD2B8 \uC0C1\uC138"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "btns align-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn btn-text bg-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "file",
+    id: "file",
+    style: {
+      display: "none"
+    },
+    onChange: importJoiner
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "btn btn-text bg-primary",
+    htmlFor: "file"
   }, "\uCC38\uC5EC\uC790 \uB4F1\uB85D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/events/edit/" + item.id,
     className: "btn btn-text bg-primary"
@@ -74685,7 +74743,32 @@ var Show = function Show(_ref) {
     className: "input-title"
   }, "\uC0DD\uC131\uC77C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-body"
-  }, item.created_at)));
+  }, item.created_at)), loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "loading flash animated infinite"
+  }, "\uC791\uC5C5\uC911") : null, item.table ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "thead"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tr"
+  }, item.table.columns.map(function (column) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "th",
+      key: "column" + column.id
+    }, column.name);
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tbody"
+  }, item.table.contents.map(function (row, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "tr",
+      key: index
+    }, row.map(function (content) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td",
+        key: content.cell
+      }, content.body);
+    }));
+  }))) : null);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Show);
@@ -74896,6 +74979,50 @@ function getLocalToken() {
   var token = localStorage.getItem("token");
   if (!token) return null;
   return JSON.parse(token);
+}
+
+/***/ }),
+
+/***/ "./resources/js/utilities/interceptors.js":
+/*!************************************************!*\
+  !*** ./resources/js/utilities/interceptors.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setup; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/utilities/auth.js");
+/* harmony import */ var _actions_commonActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/commonActions */ "./resources/js/actions/commonActions.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+
+
+
+
+var token = Object(_auth__WEBPACK_IMPORTED_MODULE_1__["getLocalToken"])();
+var dispatch = _store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch;
+function setup() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.request.use(function (config) {
+    if (token) {
+      config.headers.Authorization = "".concat(token.token_type, " ").concat(token.access_token);
+    }
+
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    if (error.response.data.message.includes('Unauthenticated')) {
+      dispatch(Object(_actions_commonActions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
+    }
+
+    return Promise.reject(error);
+  });
 }
 
 /***/ }),

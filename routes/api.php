@@ -32,6 +32,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(["middleware" => "auth:sanctum"], function() {
+    Route::post("/events/import", "Api\EventController@import");
     Route::resource("/events", "Api\EventController");
     Route::get("/tables", "Api\TableController@index");
     Route::patch("/tables/{id}", "Api\TableController@update");

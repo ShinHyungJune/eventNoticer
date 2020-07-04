@@ -1,4 +1,7 @@
 import store from './store';
+import setUpInterceptor from './utilities/interceptors';
+
+setUpInterceptor();
 
 window.store = store;
 
@@ -17,3 +20,25 @@ require('./bootstrap');
  */
 
 require('./Index');
+
+let url;
+
+window.getParams = (url) => {
+	url = new URL(url);
+
+	let params = new URLSearchParams(url.search);
+
+	return params;
+};
+
+window.getUrls = (str) => {
+	return str.match(/\bhttps?:\/\/\S+/gi);
+};
+
+window.getPaths = (url) => {
+	url = new URL(url);
+
+	let path = url.pathname;
+
+	return url.pathname.split("/");
+};

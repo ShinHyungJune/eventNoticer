@@ -40,4 +40,4 @@ select {cursor:pointer}
 table {width:100%;}
 p, a, button {word-break:break-all;}
 
-
+label {cursor:pointer;}

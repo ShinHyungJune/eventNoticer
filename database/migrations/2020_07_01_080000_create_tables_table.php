@@ -15,8 +15,8 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->text("body");
+            $table->unsignedBigInteger("event_id");
+            $table->foreign("event_id")->references("id")->on("events")->onDelete("cascade");
             $table->timestamps();
         });
     }

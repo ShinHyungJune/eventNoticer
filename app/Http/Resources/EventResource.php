@@ -19,6 +19,7 @@ class EventResource extends JsonResource
             "id" => $this->id,
             "title" => $this->title,
             "gifts" => $this->gifts()->pluck("title"),
+            "table" => TableResource::make($this->table),
             "created_at" => Carbon::make($this->created_at)->format("Y-m-d H:i:s")
         ];
     }

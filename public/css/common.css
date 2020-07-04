@@ -154,3 +154,8 @@ header.active {top:-112px;}
 
 .item {display:block; margin-bottom:10px; padding:5px 10px; font-size:18px; font-weight:500; border:5px solid #2B3648; color:#2B3648; text-align:center; transition:box-shadow .3s, color .3s, background-color .3s; cursor:pointer;}
 .item:hover {background-color:#2B3648; color:#fff; box-shadow:0px 3px 6px rgba(0,0,0,0.16);}
+
+.tr {display:flex; border-bottom:1px solid #e1e1e1;}
+.th {flex:1; padding:10px; word-break: break-all; background-color:#7A99CB; color:#fff;}
+.th label {color:#fff;}
+.td {flex:1; word-break: break-all; padding:10px;}

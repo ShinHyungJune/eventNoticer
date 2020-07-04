@@ -17,7 +17,7 @@ class ContentResource extends JsonResource
         return [
             "column_id" => $this->column_id,
             "row_id" => $this->row_id,
-            "content" => $this->content
+            "body" => $this->body
         ];
     }
 }

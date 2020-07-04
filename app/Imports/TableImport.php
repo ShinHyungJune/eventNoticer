@@ -2,7 +2,9 @@
 
 namespace App\Imports;
 
+use App\Event;
 use App\Table;
+use App\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class TableImport implements ToModel
@@ -17,12 +19,23 @@ class TableImport implements ToModel
 
     protected $table;
 
+    protected $event;
+
+    protected $user;
+
     protected $columns = [];
+
+    public function __construct(User $user, Event $event)
+    {
+        $this->user = $user;
+
+        $this->event = $event;
+    }
 
     public function model(array $row)
     {
         if($this->rows === 0){
-            $this->table = Table::create(["title" => "test", "body" => "test"]);
+            $this->table = $this->event->table()->create();
 
             foreach($row as $head){
                 $this->heads[] = $head;
@@ -45,12 +58,12 @@ class TableImport implements ToModel
 
         $index = 0;
 
-        foreach($row as $content){
+        foreach($row as $body){
 
             $this->table->contents()->create([
                 "column_id" => $this->columns[$index]->id,
                 "row_id" => $createdRow->id,
-                "content" => $content
+                "body" => $body
             ]);
 
             ++$index;

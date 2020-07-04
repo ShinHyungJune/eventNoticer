@@ -6,7 +6,10 @@ use App\Event;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\EventCollection;
 use App\Http\Resources\EventResource;
+use App\Http\Resources\TableResource;
+use App\Imports\TableImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends ApiController
 {
@@ -93,5 +96,25 @@ class EventController extends ApiController
         $event->delete();
 
         return $this->respondDeleted();
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            "file" => "required|file",
+            "id" => "required|integer"
+        ]);
+
+        $event = Event::find($request->id);
+
+        if(!$event)
+            return $this->respondNotFound();
+
+        if(auth()->id() != $event->user_id)
+            return $this->respondForbidden();
+
+        Excel::import(new TableImport(auth()->user(), $event), $request->file);
+
+        return EventResource::make($event);
     }
 }

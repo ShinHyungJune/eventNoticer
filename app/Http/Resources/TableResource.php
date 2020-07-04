@@ -18,7 +18,7 @@ class TableResource extends JsonResource
 
         foreach($this->contents as $content){
             $contents[$content["row_id"]][$content["column_id"]] = [
-                "content" => $content["content"],
+                "body" => $content["body"],
                 "cell" => "(".$content["column_id"].",".$content["row_id"].")",
                 "column_id" => $content["column_id"],
                 "row_id" => $content["row_id"],
