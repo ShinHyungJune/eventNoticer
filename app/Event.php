@@ -13,8 +13,13 @@ class Event extends Model
         return $this->hasMany(Gift::class);
     }
 
-    public function table()
+    public function participants()
     {
-        return $this->hasOne(Table::class);
+        return $this->hasMany(Participant::class);
+    }
+
+    public function winnings()
+    {
+        return $this->hasMany(Participant::class)->whereNotNull("gift_id");
     }
 }

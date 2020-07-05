@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/animate.css?{{\Illuminate\Support\Carbon::now()}}">
     <link rel="stylesheet" href="/css/common.css?{{\Illuminate\Support\Carbon::now()}}">
     <link rel="stylesheet" href="/css/style.css?{{\Illuminate\Support\Carbon::now()}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
 </head>
 <body>
 <div id="app">

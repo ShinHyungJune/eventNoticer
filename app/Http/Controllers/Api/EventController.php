@@ -86,26 +86,9 @@ class EventController extends ApiController
         return $this->respondUpdated($event);
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $event = Event::find($id);
-
-        if(!$event)
-            return $this->respondNotFound();
-
-        $event->delete();
-
-        return $this->respondDeleted();
-    }
-
-    public function import(Request $request)
-    {
-        $request->validate([
-            "file" => "required|file",
-            "id" => "required|integer"
-        ]);
-
-        $event = Event::find($request->id);
 
         if(!$event)
             return $this->respondNotFound();
@@ -113,8 +96,8 @@ class EventController extends ApiController
         if(auth()->id() != $event->user_id)
             return $this->respondForbidden();
 
-        Excel::import(new TableImport(auth()->user(), $event), $request->file);
+        $event->delete();
 
-        return EventResource::make($event);
+        return $this->respondDeleted();
     }
 }

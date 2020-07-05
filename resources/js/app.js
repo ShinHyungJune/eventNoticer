@@ -21,14 +21,16 @@ require('./bootstrap');
 
 require('./Index');
 
-let url;
-
 window.getParams = (url) => {
-	url = new URL(url);
+	if(url.match(/\bhttps?:\/\/\S+/gi)){
+		url = new URL(url);
 
-	let params = new URLSearchParams(url.search);
+		let params = new URLSearchParams(url.search);
 
-	return params;
+		return params;
+	}
+
+	return null;
 };
 
 window.getUrls = (str) => {
@@ -36,9 +38,13 @@ window.getUrls = (str) => {
 };
 
 window.getPaths = (url) => {
-	url = new URL(url);
+	if(url.match(/\bhttps?:\/\/\S+/gi)){
+		url = new URL(url);
 
-	let path = url.pathname;
+		let path = url.pathname;
 
-	return url.pathname.split("/");
+		return url.pathname.split("/");
+	}
+
+	return null;
 };

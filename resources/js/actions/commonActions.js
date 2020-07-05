@@ -1,10 +1,10 @@
 import {SET_POP, SET_FLASH, SET_USER, SET_SCROLL_ACTIVE} from "../types";
 import store from "../store";
 
-export const setPop = (data) => {
+export const setPop = (data, hidden = true) => {
     return (dispatch) => {
         
-        if(data)
+        if(data && hidden)
             document.querySelector("html").style.overflowY = "hidden";
         else
             document.querySelector("html").style.overflowY = "auto";

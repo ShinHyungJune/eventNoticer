@@ -4,7 +4,7 @@
 
 html {margin:0;padding:0;}
 body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,big,cite,code,del,dfn,em,font,img,ins,q,s,samp,small,strike,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,input,textarea,select,button,
-table,th,td,ul, li {margin:0;padding:0;border:0;font-size:16px; font-family: 'Noto Sans KR', sans-serif;color:#707070;font-weight:500;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0; box-sizing: border-box;}
+table,th,td,ul, li {margin:0;padding:0;border:0;font-size:16px; font-family: 'Noto Sans KR', sans-serif;color:#000;font-weight:500;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0; box-sizing: border-box;}
 header, footer, section, article, aside, nav, details, menu, figure, figcaption {display:block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 
 a:link , a:visited {text-decoration:none;}
@@ -37,6 +37,7 @@ input[placeholder] { color:#e1e1e1;}
 input {color:#6C595F !important;}
 
 select {cursor:pointer}
+option {width:300px !Important; max-width:300px !important;}
 table {width:100%;}
 p, a, button {word-break:break-all;}
 

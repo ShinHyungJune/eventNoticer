@@ -22,7 +22,7 @@ export default function setup() {
 	axios.interceptors.response.use((response) => {
 		return response;
 	}, (error) => {
-		if(error.response.data.message.includes('Unauthenticated')) {
+		if(error.response.data.message && error.response.data.message.includes('Unauthenticated')) {
 			dispatch(logout());
 		}
 

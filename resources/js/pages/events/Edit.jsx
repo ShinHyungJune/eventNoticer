@@ -7,8 +7,10 @@ const Edit = ({match, history}) => {
     useEffect(() => {
         axios.get("/api/events/" + match.params.id)
             .then(response => {
-                setDefaultForm(response.data.data);
-                console.log(response.data.data);
+                setDefaultForm({
+					...response.data.data,
+					gifts: response.data.data.gifts.map(gift => gift.title)
+				});
             })
     }, []);
     

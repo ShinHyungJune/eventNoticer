@@ -2,38 +2,40 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {setPop} from "../../actions/commonActions";
 import {connect} from 'react-redux';
 
-const Pop = ({type = "page", name = null, children, onClose = () => null, buttons = [], includeCancel = false, pop, setPop}) => {
+const Pop = ({className = "", type = "page", name = null, children, onClose = () => null, buttons = [], includeCancel = false, pop, setPop}) => {
     useEffect(() => {
-        if(pop === name){
-            history.pushState({page: "pop"}, document.title, location.pathname + `#${name}`);
-        }
+    	if(!className.includes("type02")){
+			if(pop === name){
+				history.pushState({page: "pop"}, document.title, location.pathname + `#${name}`);
+			}
 
-        window.addEventListener("popstate", e=> {
-            setPop(null);
+			window.addEventListener("popstate", e=> {
+				setPop(null);
 
-            onClose();
-        });
-
+				onClose();
+			});
+		}
     }, [pop]);
     const close = () => {
         onClose();
 
         setPop(null);
 
-        history.back();
+        if(!className.includes("type02"))
+        	history.back();
     };
 
     if(pop === name)
         return (
         <Fragment>
-            <div className={`pop ${type === "page" ? "type-page" : "type-pop"}`}>
+            <div className={className ? className : `pop ${type === "page" ? "type-page" : "type-pop"}`}>
                 <div className="pop-header">
                     <p className="pop-header-title">
                         {name}
                     </p>
 
-                    <div className="pop-header-btn">
-                        <img src="/img/icon_thin_x.png" alt="" className="only-page" onClick={close}/>
+                    <div className="pop-header-btn" onClick={close}>
+                        <img src="/img/icon_thin_x.png" alt="" className="only-page"/>
                     </div>
                 </div>
 

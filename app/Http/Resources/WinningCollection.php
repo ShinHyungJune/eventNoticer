@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ContentCollection extends ResourceCollection
+class WinningCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -12,10 +12,12 @@ class ContentCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public $collects = ContentResource::class;
+    public $collects = WinningResource::class;
 
     public function toArray($request)
     {
-        return [$this->collection];
+        return [
+            "data" => $this->collection
+        ];
     }
 }

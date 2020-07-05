@@ -31,12 +31,12 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
+Route::get("/winnings", "Api\WinningController@Index");
+
 Route::group(["middleware" => "auth:sanctum"], function() {
-    Route::post("/events/import", "Api\EventController@import");
     Route::resource("/events", "Api\EventController");
-    Route::get("/tables", "Api\TableController@index");
-    Route::patch("/tables/{id}", "Api\TableController@update");
-    Route::post("/tables/import", "Api\TableController@import");
+    Route::patch("/participants/announce", "Api\ParticipantController@announce");
+    Route::resource("/participants", "Api\ParticipantController");
 });
 
 Route::post('/passwordReset/send', 'Api\PasswordResetController@sendMail');
