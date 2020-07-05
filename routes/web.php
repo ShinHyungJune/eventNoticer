@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource("/previews", "PreviewController");
 
 Route::get('/', function () {
     return view('app');
@@ -24,5 +23,4 @@ Route::get('/{any}', function () {
 })->where('any', '.*');
 
 
-Auth::routes();
 
