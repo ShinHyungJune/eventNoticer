@@ -11,7 +11,6 @@ class SMS
     public function __construct()
     {
         $this->client = new \Aws\Sns\SnsClient([
-            "profile" => "default",
             "region" => "ap-northeast-1",
             "version" => "2010-03-31",
         ]);
