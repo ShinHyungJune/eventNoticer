@@ -37,8 +37,9 @@ class ParticipantController extends ApiController
 
         if($word)
             $participants = $participants->where(function($query) use($word){
-                $query->where("identifier", "LIKE", "%${word}%")
-                    ->orWhere("name", "LIKE", "%${word}%");
+                $query->where("nickname", "LIKE", "%${word}%")
+                    ->orWhere("name", "LIKE", "%${word}%")
+                    ->orWhere("phone", "LIKE", "$${word}%");
             });
 
         $participants = $participants->paginate(200);
