@@ -33,6 +33,7 @@ class WinningEventResource extends JsonResource
 
             ++$index;
         }
+
         return [
             "id" => $this->id,
             "title" => $this->title,

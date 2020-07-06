@@ -21,7 +21,7 @@ class WinningResource extends JsonResource
             "name" => $this->name,
             "platform" => $this->platform,
             "nickname" => $this->nickname,
-            "phone" => $this->phone ? substr($this->phone, -4) : null,
+            "phone" => $this->phone ? substr(str_replace("\"", "", json_encode($this->phone)), -4) : null,
             "thumbnail" => $this->thumbnail ? $this->thumbnail : "/img/circle_user.png",
         ];
     }
