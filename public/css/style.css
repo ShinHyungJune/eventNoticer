@@ -4,10 +4,10 @@ select:disabled {background-color:rgba(254,192,0,0.5); color:#fff !important; bo
 
 #announce {}
 .announce header {display:none;}
-.announce .wrap-contents {margin-top:100px;}
+.announce .wrap-contents {margin-top:100px; margin-bottom:100px;}
 .announce-search {width:100%; max-width:none; margin-bottom:20px;}
 .announce-title {margin-bottom:20px; font-size:30px; font-weight:bold; text-align:center;}
-.announce-title .point {position:relative; top:-10px; font-size:60px; font-weight:bold;}
+.announce-title .point {display:block; margin:67px 0; margin-bottom:43px; position:relative; font-size:40px; font-weight:bold;}
 .gift {padding:30px; margin-bottom:20px; border-radius:15px; border:3px solid black; background-color:#fff;}
 .gift-title {margin-bottom:30px; font-size:24px; font-weight:600; text-decoration: underline; text-align:center;}
 .platform {margin-bottom:20px;}
@@ -24,5 +24,16 @@ select:disabled {background-color:rgba(254,192,0,0.5); color:#fff !important; bo
 }
 
 @media screen and (max-width:768px){
+    .announce .wrap-contents {margin-top:60px;}
     .winning {flex-basis: 50%;}
+    .announce-title .point {margin-top:30px; margin-bottom:30px;}
+    .announce-title > img {display:block; width:100%;}
+}
+
+@media screen and (max-width:500px){
+    .winning {flex-basis: 100%;}
+    .gift-title {font-size:20px;}
+    .announce-title {margin-top:10px; font-size:24px;}
+    .announce-title .point {font-size:30px;}
+    .announce-search {width:100%; margin-bottom:0; position:fixed; bottom:0; left:0; border-radius:0; box-shadow:0px 3px 6px rgba(0,0,0,0.16); background-color:#fff; z-index:1;}
 }

@@ -75508,7 +75508,14 @@ var Index = function Index(_ref) {
       alt: ""
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.platform), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
       className: "align-left"
-    }, item.url));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: item.url,
+      target: "_blank",
+      title: "새창열림",
+      onClick: function onClick(e) {
+        return e.stopPropagation();
+      }
+    }, item.url)));
   }))), items.meta.current_page < items.meta.last_page ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn-full bg-primary",
     onClick: loadMore,
@@ -75568,6 +75575,13 @@ var Index = function Index(_ref) {
       word = _useState4[0],
       setWord = _useState4[1];
 
+  var labels = {
+    "FACEBOOK": "페이스북",
+    "YOUTUBE": "유튜브",
+    "INSTAGRAM": "인스타그램",
+    "NAVER": "네이버",
+    "UNKNOWN": "기타"
+  };
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     $("#app").addClass("announce");
     axios.get("/api/winnings?event_id=" + match.params.event_id).then(function (response) {
@@ -75581,7 +75595,10 @@ var Index = function Index(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "announce-title"
-  }, event.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "/img/event_title1.png",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "point"
   }, "\uB2F9\uCCA8\uC790 \uBC1C\uD45C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-search announce-search"
@@ -75601,7 +75618,7 @@ var Index = function Index(_ref) {
         key: index
       }, platform[0] !== "UNKNOWN" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "platform-title"
-      }, platform[0]) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, labels[platform[0]]) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "winnings"
       }, platform[1].data.map(function (winning) {
         if (winning.name && winning.name.includes(word) || winning.nickname && winning.nickname.includes(word) || winning.phone && winning.phone.includes(word)) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

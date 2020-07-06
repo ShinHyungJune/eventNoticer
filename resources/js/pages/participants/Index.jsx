@@ -130,7 +130,9 @@ const Index = ({match}) => {
 						<td>{item.name}</td>
 						<td>{item.phone}</td>
 						<td>{item.platform}</td>
-						<td className={"align-left"}>{item.url}</td>
+						<td className={"align-left"}>
+                            <a href={item.url} target={"_blank"} title={"새창열림"} onClick={e => e.stopPropagation()}>{item.url}</a>
+                        </td>
 					</tr>
 				)}
 				</tbody>

@@ -186,8 +186,10 @@ header.active {top:-89px;}
 .table.type01.active tbody tr {cursor:pointer;}
 .table.type01.active tbody tr:hover {background-color:#2B3648;}
 .table.type01.active tbody tr:hover td {color:#fff;}
+.table.type01.active tbody tr:hover a {color:#fff;}
 .table.type01 tbody tr.active {background-color:#2B3648;}
 .table.type01 tbody tr.active td {color:#fff;}
+.table.type01 tbody tr.active a {color:#fff;}
 .table.type01 thead {background-color:#7A99CB;}
 .table.type01 thead th {padding:10px; color:#fff;}
 .table.type01 tr {}

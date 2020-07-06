@@ -9,6 +9,14 @@ const Index = ({match}) => {
 	});
 
     let [word, setWord] = useState("");
+    
+    let labels = {
+        "FACEBOOK" : "페이스북",
+        "YOUTUBE" : "유튜브",
+        "INSTAGRAM" : "인스타그램",
+        "NAVER" : "네이버",
+        "UNKNOWN" : "기타"
+    };
 
     useEffect(() => {
     	$("#app").addClass("announce");
@@ -26,7 +34,7 @@ const Index = ({match}) => {
     return (
         <div>
 			<p className="announce-title">
-				{event.title}
+                <img src="/img/event_title1.png" alt=""/>
 				<br/><span className="point">당첨자 발표</span>
 			</p>
 
@@ -41,7 +49,7 @@ const Index = ({match}) => {
 					{Object.entries(gift.platforms).map((platform, index) => {
 							if (platform[1].data.length !== 0)
 								return (<div className="platform" key={index}>
-									{platform[0] !== "UNKNOWN" ? <p className="platform-title">{platform[0]}</p> : null}
+									{platform[0] !== "UNKNOWN" ? <p className="platform-title">{labels[platform[0]]}</p> : null}
 									<div className="winnings">
 										{platform[1].data.map(winning => {
 											if(winning.name && winning.name.includes(word) || winning.nickname && winning.nickname.includes(word) || winning.phone && winning.phone.includes(word))
