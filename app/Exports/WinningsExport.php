@@ -14,7 +14,7 @@ class WinningsExport implements FromCollection, WithMapping, WithHeadings
     */
     public function collection()
     {
-        return Participant::all();
+        return Participant::whereNotNull("gift_id")->get();
     }
 
     public function map($model) : array
