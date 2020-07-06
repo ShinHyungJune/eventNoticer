@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/loaderio-9ddbf78df93838a25ced4d4a3836335f/", function(){
+    return  "loaderio-9ddbf78df93838a25ced4d4a3836335f";
+});
+
 Route::get('/', function () {
     return view('app');
 });
