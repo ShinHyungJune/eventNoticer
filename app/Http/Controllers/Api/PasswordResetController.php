@@ -62,7 +62,7 @@ class PasswordResetController extends ApiController
 
         $sms = new SMS();
 
-        $sms->send($request->phone, "인증번호 [${token}]\n- ${} -");
+        $sms->send($request->phone, "인증번호 [${token}]\n-".config("app.name")."-");
 
         return $this->respondCreated(null, "인증번호가 발송되었습니다!");
     }

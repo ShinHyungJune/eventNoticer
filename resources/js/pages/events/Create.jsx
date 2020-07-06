@@ -10,6 +10,8 @@ const Create = ({history}) => {
             </div>
             
             <Form method={"post"} url={"/api/events"} enterSubmitDisabled={true} onThen={() => history.goBack()}>
+                <input type="img" title={"제목 이미지"} name={"img"}/>
+                
                 <input type="text" title={"이벤트명"} name={"title"}/>
     
                 <input type="tags" title={"경품"} name={"gifts"}/>

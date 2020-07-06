@@ -12,4 +12,10 @@ class Participant extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+    public function gift()
+    {
+        return $this->belongsTo(Gift::class);
+    }
+
 }

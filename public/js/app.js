@@ -74976,6 +74976,10 @@ var Create = function Create(_ref) {
       return history.goBack();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "img",
+    title: "제목 이미지",
+    name: "img"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     title: "이벤트명",
     name: "title"
@@ -75059,6 +75063,10 @@ var Edit = function Edit(_ref) {
       return history.goBack();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "img",
+    title: "제목 이미지",
+    name: "img"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     title: "이벤트명",
     name: "title"
@@ -75276,6 +75284,15 @@ var Show = function Show(_ref) {
     className: "input-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-title"
+  }, "\uC81C\uBAA9 \uC774\uBBF8\uC9C0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-body"
+  }, item.img ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: item.img.url,
+    alt: ""
+  }) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-title"
   }, "\uC774\uBCA4\uD2B8\uBA85"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-body"
   }, item.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -75459,10 +75476,14 @@ var Index = function Index(_ref) {
     className: "page-title"
   }, "\uCC38\uC5EC\uC790 \uBAA9\uB85D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "btns align-right"
-  }, event.winnings && event.winnings.data.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, event.winnings && event.winnings.data.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/winnings/export/".concat(match.params.event_id),
+    download: true,
+    className: "btn btn-text bg-accent"
+  }, "\uB2F9\uCCA8\uC790 \uC5D1\uC140\uB2E4\uC6B4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/winnings/" + match.params.event_id,
     className: "btn btn-text bg-primary"
-  }, "\uB2F9\uCCA8\uC790 \uACF5\uC9C0\uBCF4\uAE30") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "\uB2F9\uCCA8\uC790 \uACF5\uC9C0\uBCF4\uAE30")) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-text bg-primary",
     onClick: function onClick() {
       store.dispatch(Object(_actions_commonActions__WEBPACK_IMPORTED_MODULE_2__["setPop"])("당첨자 뽑기", false));
@@ -75595,10 +75616,10 @@ var Index = function Index(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "announce-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/img/event_title1.png",
+  }, event.img ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: event.img.url,
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }) : event.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "point"
   }, "\uB2F9\uCCA8\uC790 \uBC1C\uD45C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-search announce-search"

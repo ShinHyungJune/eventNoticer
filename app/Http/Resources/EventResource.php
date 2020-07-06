@@ -18,6 +18,7 @@ class EventResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "img" => $this->img,
             "title" => $this->title,
             "gifts" => $this->gifts,
             "winnings" => new ParticipantCollection($this->winnings),

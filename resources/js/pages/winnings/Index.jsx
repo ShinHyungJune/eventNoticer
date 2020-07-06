@@ -34,7 +34,7 @@ const Index = ({match}) => {
     return (
         <div>
 			<p className="announce-title">
-                <img src="/img/event_title1.png" alt=""/>
+                {event.img ? <img src={event.img.url} alt=""/> : event.title}
 				<br/><span className="point">당첨자 발표</span>
 			</p>
 

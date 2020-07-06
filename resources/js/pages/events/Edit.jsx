@@ -21,6 +21,8 @@ const Edit = ({match, history}) => {
             </div>
             
             <Form method={"patch"} url={"/api/events/" + match.params.id} enterSubmitDisabled={true} defaultForm={defaultForm} onThen={() => history.goBack()}>
+                <input type="img" title={"제목 이미지"} name={"img"}/>
+                
                 <input type="text" title={"이벤트명"} name={"title"}/>
     
                 <input type="tags" title={"경품"} name={"gifts"}/>

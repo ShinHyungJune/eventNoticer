@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Event;
+use App\Exports\EventsExport;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\EventCollection;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\TableResource;
 use App\Imports\TableImport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -26,10 +28,13 @@ class EventController extends ApiController
     {
         $request->validate([
             "title" => "required|string|max:1000",
-            "gifts" => "required|max:5000"
+            "gifts" => "required|max:5000",
+            "img" => "nullable|image",
         ]);
 
         $event = auth()->user()->events()->create($request->all());
+
+        $event->addMedia($request->img)->toMediaCollection("img", "s3");
 
         $gifts = explode(",", $request->gifts);
 
@@ -60,6 +65,7 @@ class EventController extends ApiController
 
         $request->validate([
             "title" => "required|string|max:1000",
+            "img" => "nullable|image"
         ]);
 
         $event = Event::find($id);
@@ -73,15 +79,12 @@ class EventController extends ApiController
 
         $event->update(["title" => $request->title]);
 
+        if($request->img)
+            $event->addMedia($request->img)->toMediaCollection("img", "s3");
+
         $gifts = explode(",", $request->gifts);
 
-        $event->gifts()->delete();
-
-        foreach($gifts as $gift){
-            $event->gifts()->create([
-                "title" => $gift
-            ]);
-        }
+        $event->giftsSync($gifts);
 
         return $this->respondUpdated($event);
     }
@@ -100,4 +103,5 @@ class EventController extends ApiController
 
         return $this->respondDeleted();
     }
+    
 }

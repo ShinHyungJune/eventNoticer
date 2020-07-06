@@ -76,7 +76,14 @@ const Show = ({match, history}) => {
                     <Link to={"/events/edit/" + item.id} className="btn btn-text bg-primary">이벤트 수정</Link>
                 </div>
             </div>
-  
+            <div className="input-wrap">
+                <div className="input-title">제목 이미지</div>
+        
+                <div className="input-body">
+                    {item.img ? <img src={item.img.url} alt=""/> : ""}
+                </div>
+            </div>
+            
             <div className="input-wrap">
                 <div className="input-title">이벤트명</div>
                 

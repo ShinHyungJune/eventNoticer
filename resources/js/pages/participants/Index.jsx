@@ -95,7 +95,13 @@ const Index = ({match}) => {
             <div className="clearfix"><p className="page-title">참여자 목록</p>
     
                 <div className="btns align-right">
-					{event.winnings && event.winnings.data.length !== 0 ? <Link to={"/winnings/" + match.params.event_id} className="btn btn-text bg-primary">당첨자 공지보기</Link> : null}
+					{event.winnings && event.winnings.data.length !== 0 ? 
+                        <Fragment>
+                            <a href={`/winnings/export/${match.params.event_id}`} download={true} className="btn btn-text bg-accent">당첨자 엑셀다운</a>
+                            <Link to={"/winnings/" + match.params.event_id} className="btn btn-text bg-primary">당첨자 공지보기</Link>
+                        </Fragment>
+                        : null
+					}
 
                     <button className="btn btn-text bg-primary" onClick={() => {store.dispatch(setPop("당첨자 뽑기", false)); setActive(true);}}>당첨자 뽑기</button>
                 </div>
