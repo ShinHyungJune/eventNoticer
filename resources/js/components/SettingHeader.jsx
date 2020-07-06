@@ -41,7 +41,13 @@ const SettingHeader = ({rows, event_id, history}) => {
 			hidden: false,
 			name: "url",
 			value: null
-		}
+		},
+        thumbnail : {
+            title: "썸네일",
+            hidden: false,
+            name: "thumbnail",
+            value: null
+        }
 	});
 
 	let [headers, setHeaders] = useState([]);
@@ -88,10 +94,16 @@ const SettingHeader = ({rows, event_id, history}) => {
 						// 데이터 저장
 						data[settingHeader[0]] = row[header];
 						data["event_id"] = event_id;
-						data["thumbnail"] = thumbnail;
+						
+						if(settingHeader[0] === "thumbnail" && !row[header])
+						    data["thumbnail"] = thumbnail;
+						else
+						    data[settingHeader[0]] = row[header]
 					}
 				});
 			});
+			
+			console.log(data);
 
 			return data;
 		});
