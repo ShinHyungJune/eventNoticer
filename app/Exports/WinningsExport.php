@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Event;
 use App\Participant;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -9,12 +10,19 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class WinningsExport implements FromCollection, WithMapping, WithHeadings
 {
+    protected $event;
+
+    public function __construct(Event $event)
+    {
+        $this->event = $event;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Participant::whereNotNull("gift_id")->get();
+        return $this->event->participants()->whereNotNull("gift_id")->get();
     }
 
     public function map($model) : array

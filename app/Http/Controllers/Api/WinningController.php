@@ -36,6 +36,6 @@ class WinningController extends ApiController
         if(auth()->id() != $event->user_id)
             return $this->respondForbidden();
 
-        return Excel::download(new WinningsExport, "당첨자".Carbon::now()->format("Y-m-dH:i:s").".xlsx");
+        return Excel::download(new WinningsExport($event), "당첨자".Carbon::now()->format("Y-m-dH:i:s").".xlsx");
     }
 }
