@@ -44,7 +44,6 @@ class ParticipantController extends ApiController
 
         $participants = $participants
             ->orderBy("nickname","asc")
-            ->orderBy("name", "asc")
             ->paginate(200);
 
         return new ParticipantCollection($participants);

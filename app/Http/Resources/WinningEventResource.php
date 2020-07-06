@@ -29,7 +29,6 @@ class WinningEventResource extends JsonResource
                 $platforms[$platform] = new WinningCollection($this->winnings()
                     ->where("gift_id", $gift->id)
                     ->where("platform", $platform)
-                    ->orderBy("name", "asc")
                     ->orderBy("nickname", "asc")
                     ->get());
             }
