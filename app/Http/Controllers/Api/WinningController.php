@@ -21,6 +21,6 @@ class WinningController extends ApiController
         if(!$event)
             return $this->respondNotFound();
 
-        return new WinningEventResource($event);
+        return WinningEventResource::make($event);
     }
 }
