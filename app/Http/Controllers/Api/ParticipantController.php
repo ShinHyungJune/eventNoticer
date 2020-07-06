@@ -42,7 +42,10 @@ class ParticipantController extends ApiController
                     ->orWhere("phone", "LIKE", "$${word}%");
             });
 
-        $participants = $participants->paginate(200);
+        $participants = $participants
+            ->orderBy("nickname","asc")
+            ->orderBy("name", "asc")
+            ->paginate(200);
 
         return new ParticipantCollection($participants);
     }

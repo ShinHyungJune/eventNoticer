@@ -26,7 +26,12 @@ class WinningEventResource extends JsonResource
             $platforms = [];
 
             foreach(PlatformType::getValues() as $platform){
-                $platforms[$platform] = new WinningCollection($this->winnings()->where("gift_id", $gift->id)->where("platform", $platform)->get());
+                $platforms[$platform] = new WinningCollection($this->winnings()
+                    ->where("gift_id", $gift->id)
+                    ->where("platform", $platform)
+                    ->orderBy("name", "asc")
+                    ->orderBy("nickname", "asc")
+                    ->get());
             }
 
             $gifts[$index]["platforms"] = $platforms;
