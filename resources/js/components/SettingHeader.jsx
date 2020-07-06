@@ -102,8 +102,6 @@ const SettingHeader = ({rows, event_id, history}) => {
 					}
 				});
 			});
-			
-			console.log(data);
 
 			return data;
 		});

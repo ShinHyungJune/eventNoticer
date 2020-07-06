@@ -73062,7 +73062,6 @@ var SettingHeader = function SettingHeader(_ref) {
           }
         });
       });
-      console.log(data);
       return data;
     });
     axios.post("/api/participants", form).then(function (response) {
@@ -75607,7 +75606,7 @@ var Index = function Index(_ref) {
     "FACEBOOK": "페이스북",
     "YOUTUBE": "유튜브",
     "INSTAGRAM": "인스타그램",
-    "NAVER": "네이버",
+    "NAVER": "네이버 블로그",
     "UNKNOWN": "기타"
   };
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {

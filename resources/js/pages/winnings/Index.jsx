@@ -14,7 +14,7 @@ const Index = ({match}) => {
         "FACEBOOK" : "페이스북",
         "YOUTUBE" : "유튜브",
         "INSTAGRAM" : "인스타그램",
-        "NAVER" : "네이버",
+        "NAVER" : "네이버 블로그",
         "UNKNOWN" : "기타"
     };
 
